@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.com/Locoboy96/LOG8371-TP1.svg?branch=master)](https://travis-ci.org/Locoboy96/LOG8371-TP1)
+[![Build Status](https://travis-ci.com/Locoboy96/LOG8371-TP1.svg?branch=master)](https://travis-ci.com/Locoboy96/LOG8371-TP1)
 
 # WEKA (stable version)
 
