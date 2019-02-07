@@ -1,3 +1,5 @@
 language: java
 
 before_script: weka
+
+script: ant build
