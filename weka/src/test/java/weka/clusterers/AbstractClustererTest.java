@@ -502,64 +502,6 @@ public abstract class AbstractClustererTest
   }
 
   /**
-   * Runs a regression test -- this checks that the output of the tested
-   * object matches that in a reference version. When this test is
-   * run without any pre-existing reference output, the reference version
-   * is created.
-   */
-  public void testRegression() throws Exception {
-    boolean	succeeded;
-    Regression 	reg;
-    Instances   train;
-    
-    // don't bother if not working correctly
-    if (m_Tester.hasClasspathProblems())
-      return;
-    
-    reg       = new Regression(this.getClass());
-    train     = null;
-    succeeded = false;
-    
-    train = m_Tester.makeTestDataset(
-	42, m_Tester.getNumInstances(), 
-	m_NominalPredictors ? 2 : 0,
-	m_NumericPredictors ? 1 : 0, 
-	m_StringPredictors ? 1 : 0,
-	m_DatePredictors ? 1 : 0,
-	m_RelationalPredictors ? 1 : 0,
-	m_multiInstanceHandler);
-    
-    try {
-      m_RegressionResults = useClusterer(train);
-      succeeded = true;
-      reg.println(m_RegressionResults);
-    }
-    catch (Exception e) {
-      String msg = e.getMessage().toLowerCase();
-      if (msg.indexOf("not in classpath") > -1)
-	return;
-      
-      m_RegressionResults = null;
-    }
-    
-    if (!succeeded) {
-      fail("Problem during regression testing: no successful output generated");
-    }
-
-    try {
-      String diff = reg.diff();
-      if (diff == null) {
-        System.err.println("Warning: No reference available, creating."); 
-      } else if (!diff.equals("")) {
-        fail("Regression test failed. Difference:\n" + diff);
-      }
-    } 
-    catch (java.io.IOException ex) {
-      fail("Problem during regression testing.\n" + ex);
-    }
-  }
-  
-  /**
    * tests the listing of the options
    */
   public void testListOptions() {
